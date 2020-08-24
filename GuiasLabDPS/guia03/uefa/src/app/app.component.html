@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <img src="https://1.bp.blogspot.com/-EhgIDI-lkvc/VeQKGu13JOI/AAAAAAAAALk/stFLi1Yh81I/s320/Champions%2BLeague.png">
+        </a>
+      </div>
+      <div class="media-body">
+        <h1>{{title}}</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 card" style="padding: 15px;">
+      <h2>Equipos</h2>
+      <ol class="scrums">
+      <li *ngFor="let scrum of scrums"
+      [class.selected]="scrum === selectedScrum"
+      (click)="onSelect(scrum)">
+      {{scrum.name}}
+      </li>
+      </ol>
+    </div>
+    <div class="col-sm-8">
+      <app-scrum-detail [scrum]="selectedScrum"></app-scrum-detail>
+    </div>
+  </div>
+</div>
+
