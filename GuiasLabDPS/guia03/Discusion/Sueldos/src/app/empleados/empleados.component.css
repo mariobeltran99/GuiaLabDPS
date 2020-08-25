@@ -1,0 +1,21 @@
+.st{
+    margin:auto;
+    display: block;
+    width: 50%;
+}
+.tex{
+    text-align: center;
+}
+.contenedor{
+    margin-top: 35px;
+    font-size: 20px;
+}
+.inSize{
+    width: 100%;
+    margin-top: 15px ;
+}
+.btnSubmit{
+    width: 100%;
+    font-size: 20px;
+    margin-top: 15px;
+}
