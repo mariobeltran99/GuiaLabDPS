@@ -1,0 +1,41 @@
+<mat-card class="st">
+    <mat-card-title class="tex">Formulario Pagos de Gasolina</mat-card-title>
+    <mat-card-content class="contenedor">
+        <form [formGroup]="pagosForm" (ngSubmit)="enviar()"> 
+            <mat-form-field class="inSize">
+                <mat-label>Tipo de Gasolina</mat-label>
+                <mat-select formControlName="gasolina">
+                    <mat-option value="Regular">Regular - $4.05</mat-option>
+                    <mat-option value="Especial">Especial - $4.25</mat-option>
+                    <mat-option value="Diesel">Diesel - $3.96</mat-option>
+                </mat-select>
+                <mat-error *ngIf="esCampoValido('gasolina')">
+                    {{obtenerMensajeError1('gasolina')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="inSize">
+                <mat-label>Cantidad de Galones (gal)</mat-label>
+                <input type="number" step="0.05" matInput placeholder="Ej. 50.06" formControlName="galon"> 
+                <mat-error *ngIf="esCampoValido('galon')">
+                    {{obtenerMensajeError1('galon')}}
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" class="btnSubmit" [disabled]="!pagosForm.valid">Generar Boleta</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+<br>
+<br>
+<div [hidden]="cont == 0">
+    <mat-card class="st" >
+        <mat-card-title class="tex">Boleta de Pago de Gasolina</mat-card-title>
+        <mat-card-content class="contenedor">
+            <p><strong>Tipo de Gasolina:</strong> {{opt}}</p>
+            <br>
+            <p><strong>Cantidad de Galones a Servir:</strong> {{gal}} galones</p>
+            <br>
+            <p><strong>Total a Pagar:</strong> {{pago | currency}} </p>
+            <button mat-raised-button color="primary" type="submit" class="btnSubmit" (click)="clean()">¡Listo!</button>
+        </mat-card-content>
+    </mat-card>
+</div>

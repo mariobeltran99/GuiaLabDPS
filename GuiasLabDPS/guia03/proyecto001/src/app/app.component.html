@@ -1,0 +1,29 @@
+<div>
+    <p>Nombre del Empleado:{{ nombre }}</p>
+    <p>Edad:{{ edad+5 }}</p>
+    <p>Los últimos tres sueldos son: {{sueldo[0]}}, {{sueldo[1]}} y {{sueldo[2]}}</p>
+    <p>Otra manera para obtener los 3 sueldos en suma son: {{sueldo[0]+sueldo[1]+sueldo[2]}}</p>
+    <p>En los últimos 3 meses ha ganado: {{ultimos3sueldos()}}</p>
+    <p>{{esActivo()}}</p>
+    <a href="{{ sitio }}" target="_blank">Aquí</a>
+</div>
+<br>
+<div>
+    <p>Nombre del Empleado:{{ nombre }}</p>
+    <p>Edad:{{ edad }}</p>
+    <p *ngIf="edad>=18 else menor">Es mayor de edad</p>
+    <ng-template #menor><p>Es menor de edad</p></ng-template>
+    <table border="1">
+        <tr>
+        <td>Sueldos</td>
+        </tr>
+        <tr *ngFor="let suel of sueldo">
+        <td>{{suel}}</td>
+        </tr>
+    </table>  
+</div>
+<div>
+    <p>{{contador}}</p>
+    <button (click)="incrementar()">Sumar 1</button>
+    <button (click)="decrementar()">Restar 1</button>
+</div>
