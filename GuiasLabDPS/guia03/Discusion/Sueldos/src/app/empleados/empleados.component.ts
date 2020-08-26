@@ -8,7 +8,6 @@ import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition }
 })
 export class EmpleadosComponent implements OnInit {
   private letras = /[a-zA-Z]+$/;
-  private numero = /^\d+\.\d{0,2}$/;
   horizontal:MatSnackBarHorizontalPosition = 'center';
   vertical:MatSnackBarVerticalPosition = 'top';
   public sueldoForm:FormGroup;
@@ -23,7 +22,7 @@ export class EmpleadosComponent implements OnInit {
   public ngOnInit(): void {
     this.sueldoForm = this.fb.group({
       nombre: new FormControl(null,[Validators.required,Validators.pattern(this.letras)]),
-      sueldo: new FormControl(null,[Validators.required,Validators.pattern(this.numero)])
+      sueldo: new FormControl(null,[Validators.required,Validators.min(50.00),Validators.pattern('^([0-9]+(\.?[0-9]?[0-9]?)?)')])
     });
     this.cont=0;
   }
@@ -65,7 +64,9 @@ export class EmpleadosComponent implements OnInit {
       }
     } else{
       if(this.sueldoForm.get(field).hasError('pattern')){
-        mensaje = 'Solo se aceptan números o pasa el número de decimales';
+        mensaje = 'Solo se aceptan números y con el formato (0.00)';
+      }else if(this.sueldoForm.get(field).hasError('min')){
+        mensaje = 'El mínimo de salario requerido es 50.00';
       }
     }
     return mensaje;

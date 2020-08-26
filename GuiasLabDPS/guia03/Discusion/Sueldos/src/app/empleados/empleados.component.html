@@ -11,7 +11,7 @@
             </mat-form-field>
             <mat-form-field class="inSize">
                 <mat-label>Salario del Empleado ($)</mat-label>
-                <input type="number" step="0.00" matInput placeholder="Ej. 500.60" formControlName="sueldo">
+                <input type="number" step="5.00" matInput placeholder="Ej. 500.60" formControlName="sueldo">
                 <mat-error *ngIf="esCampoValido('sueldo')">
                     {{obtenerMensajeError1('sueldo')}}
                 </mat-error>
