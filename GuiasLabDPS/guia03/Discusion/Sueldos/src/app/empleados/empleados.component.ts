@@ -35,7 +35,9 @@ export class EmpleadosComponent implements OnInit {
       let name = this.sueldoForm.get('nombre').value;
       let salbase = this.sueldoForm.get('sueldo').value;
       this.sueldoForm.reset();
-      this.sueldoForm.clearValidators();
+      Object.keys(this.sueldoForm.controls).forEach(key => {
+        this.sueldoForm.controls[key].setErrors(null);
+      });
       this.isss = salbase * desIsss;
       this.renta = salbase * desRenta;
       this.afp = salbase * desAfp;
