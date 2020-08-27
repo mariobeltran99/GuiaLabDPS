@@ -45,12 +45,15 @@ export class PagosComponent implements OnInit {
         break;
       }
       this.pagosForm.reset();
-      this.pagosForm.clearValidators();
+      Object.keys(this.pagosForm.controls).forEach(key => {
+        this.pagosForm.controls[key].setErrors(null);
+      });
       this.cont++; 
     }else{
       return;
     }
   }
+
   obtenerMensajeError1(field:string) :string{
     let mensaje;
     if(this.pagosForm.get(field).errors.required){
@@ -82,6 +85,5 @@ export class PagosComponent implements OnInit {
 
   clean(){
     this.cont = 0;
-    this.pagosForm.reset();
   }
 }
