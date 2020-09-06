@@ -1,0 +1,70 @@
+<div class="container">
+  <h2>CRUD ANGULAR PHP Y MYSQL</h2>
+  <div class="col-md-12 mt-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <h2 class="text-center">Administración de artículos</h2>
+          <table class="table table-
+          hover" *ngIf="hayRegistros(); else sinarticulos">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Proveedor</th>
+                <th>Fabricante</th>
+                <th>Borrar</th>
+                <th>Seleccionar</th>  
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let art of articulos">
+                <td>{{art.codigo}}</td>
+                <td>{{art.descripcion}}</td>
+                <td>{{art.precio | currency}}</td>
+                <td>{{art.proveedor}}</td>
+                <td>{{art.fabricante}}</td>
+                <td><button (click)="baja(art.codigo)" 
+                class="btn btn-danger">Borrar</button></td>
+                <td><button (click)="seleccionar(art.codigo)"
+                class="btn btn-warning">Seleccionar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-template #sinarticulos>
+        <p>No hay articulos.</p>
+        </ng-template>
+        <div>
+          <form [formGroup]="articuloForm">
+            <div class="form-group">
+              <input type="text" [(ngModel)]="art.descripcion" placeholder="Descripción" formControlName="descrip"
+              class="form-control">
+              <small class="form-text text-danger" *ngIf="esCampoValido('descrip')">{{ obtenerMensajeError('descrip') }}</small>
+            </div>
+            <div class="form-group">
+              <input type="number" [(ngModel)]="art.precio" placeholder="Precio" step="0.50" formControlName="price"
+              class="form-control">
+              <small class="form-text text-danger" *ngIf="esCampoValido('price')">{{ obtenerMensajeError('price') }}</small>
+            </div>
+            <div class="form-group">
+              <input type="text" [(ngModel)]="art.proveedor" placeholder="Proveedor" formControlName="provee"
+              class="form-control">
+              <small class="form-text text-danger" *ngIf="esCampoValido('provee')">{{ obtenerMensajeError('provee') }}</small>
+            </div>
+            <div class="form-group">
+              <input type="text" [(ngModel)]="art.fabricante" placeholder="Fabricante" formControlName="fabri"
+              class="form-control">
+              <small class="form-text text-danger" *ngIf="esCampoValido('fabri')">{{ obtenerMensajeError('fabri') }}</small>
+            </div>
+            <button (click)="alta()" *ngIf="art.codigo == 0" [disabled]="!articuloForm.valid"
+            class="btn btn-primary btn-space">Agregar</button>
+            <button (click)="modificacion()" *ngIf="art.codigo !== 0" [disabled]="!articuloForm.valid"
+            class="btn btn-warning">Modificar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
