@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="text-center">Lista de Estudiantes</h6>
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Correo Electrónico</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of studentList">
+          <td>{{ student.name }}</td>
+          <td>{{ student.lastname }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.phone }}</td>
+          <td>{{ student.email }}</td>
+          <td>
+            <a class="btn btn-secondary text-white" (click)="onEdit(student)">
+              <i class="far fa-edit"></i>
+            </a>
+          </td>
+          <td>
+            <a
+              class="btn btn-danger text-white"
+              (click)="onDelete(student.$id)"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
