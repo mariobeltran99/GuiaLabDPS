@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "crudangularestudiantes": {
+      "hosting": {
+        "projectStudent": [
+          "crudangularestudiantes"
+        ]
+      }
+    }
+  }
+}
